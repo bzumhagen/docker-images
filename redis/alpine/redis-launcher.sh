@@ -65,9 +65,11 @@ function launchmaster() {
   fi
 
   if [ "$RDB_ENABLED" = "true" ]; then
-    echo "save 900 1" > ${MASTER_CONF}
-    echo "save 300 10" > ${MASTER_CONF}
-    echo "save 60 10000" > ${MASTER_CONF}
+    {
+      echo "save 900 1"
+      echo "save 300 10"
+      echo "save 60 10000"
+    } >> ${MASTER_CONF}
   fi
 
   redis-server $MASTER_CONF --protected-mode no $@
